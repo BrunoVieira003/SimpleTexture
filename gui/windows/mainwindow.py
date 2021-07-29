@@ -8,9 +8,6 @@ import json
 
 class UI_MainWindow:
     def setup_ui(self, parent, theme="default"):
-        with open(f"gui\\themes\\{theme}.json", "r") as arq:
-            self.theme = json.load(arq)
-
         if not parent.objectName():
             parent.setObjectName("MainWindow")
         
@@ -21,7 +18,6 @@ class UI_MainWindow:
 
         # Set central frame
         self.central_frame = QFrame()
-        self.central_frame.setStyleSheet(f"background-color: {self.theme['background']}")
 
         # Set main layout
         self.main_layout = QHBoxLayout(self.central_frame)
@@ -30,7 +26,6 @@ class UI_MainWindow:
 
         # left menu
         self.menu = QFrame()
-        self.menu.setStyleSheet("background-color: #edb012")
         self.menu.setMaximumWidth(70)
         self.menu.setMinimumWidth(70)
 
@@ -41,7 +36,6 @@ class UI_MainWindow:
         self.toggle_button = QPushButton(text="Menu")
         self.toggle_button.setFlat(True)
         self.toggle_button.setMinimumHeight(70)
-        self.toggle_button.setStyleSheet("border: none; background-color: #ffffff")
 
         self.menu_spacing = QSpacerItem(0, 70, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -50,17 +44,19 @@ class UI_MainWindow:
 
         # content
         self.content = QFrame()
-        self.content.setStyleSheet(f"background-color: {self.theme['background']}")
         self.content_layout = QVBoxLayout(self.content)
         self.content_layout.setSpacing(0)
         self.content_layout.setContentsMargins(0,0,0,0)
 
         # Topbar
         self.topbar = QFrame()
-        self.topbar.setMaximumHeight(50)
-        self.topbar.setMinimumHeight(50)
-        self.topbar.setStyleSheet(f"background-color: {self.theme['topbar']}")
+        self.topbar.setMaximumHeight(70)
+        self.topbar.setMinimumHeight(70)
+        self.topbar_line = QFrame()
+        self.topbar_line.setMinimumHeight(20)
+
         self.content_layout.addWidget(self.topbar)
+        self.content_layout.addWidget(self.topbar_line)
 
         # Pages
         self.pages = QStackedWidget()
@@ -77,6 +73,9 @@ class UI_MainWindow:
 
         # Bind buttons
         self.toggle_button.clicked.connect(self.toggle_menu)
+
+        # Add theme
+        self.set_theme(theme)
     
     def toggle_menu(self):
         button_width = self.menu.width()
@@ -90,3 +89,13 @@ class UI_MainWindow:
         self.animation.setEasingCurve(QEasingCurve.InOutCirc)
         self.animation.setDuration(250)
         self.animation.start()
+    
+    def set_theme(self, theme):
+        with open(f"gui\\themes\\{theme}.json", "r") as arq:
+            self.theme = json.load(arq)
+        self.central_frame.setStyleSheet(f"background-color: {self.theme['background']}")
+        self.content.setStyleSheet(f"background-color: {self.theme['background']}")
+        self.menu.setStyleSheet(f"background-color: {self.theme['menu_background']}")
+        self.toggle_button.setStyleSheet("border: none; background-color: #ffffff")
+        self.topbar.setStyleSheet(f"background-color: {self.theme['topbar']}")
+        self.topbar_line.setStyleSheet(f"background-color: {self.theme['topbar_line']}")

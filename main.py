@@ -11,7 +11,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.ui = UI_MainWindow()
-        self.ui.setup_ui(self)
+        self.ui.setup_ui(self, theme="default")
 
         self.show()
     

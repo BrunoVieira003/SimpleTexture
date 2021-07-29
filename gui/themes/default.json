@@ -1,5 +1,6 @@
 {
     "background": "#383838",
     "topbar": "#262626",
-    "menu_background": "#edb012"
+    "menu_background": "#edb012",
+    "topbar_line": "#1b1b1b"
 }
