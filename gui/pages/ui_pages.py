@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'pagesLQdibr.ui'
+## Form generated from reading UI file 'pagesiOoppM.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.2
 ##
@@ -23,32 +23,30 @@ class Ui_pages(object):
         self.verticalLayout = QVBoxLayout(self.home)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.frame = QFrame(self.home)
-        self.frame.setObjectName(u"frame")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.verticalLayout.setContentsMargins(48, 48, 0, 0)
+        self.home_title = QLabel(self.home)
+        self.home_title.setObjectName(u"home_title")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy)
-        self.frame.setMaximumSize(QSize(16777215, 20))
-        self.frame.setLayoutDirection(Qt.LeftToRight)
-        self.frame.setAutoFillBackground(False)
-        self.frame.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+        sizePolicy.setHeightForWidth(self.home_title.sizePolicy().hasHeightForWidth())
+        self.home_title.setSizePolicy(sizePolicy)
+        self.home_title.setMargin(0)
+
+        self.verticalLayout.addWidget(self.home_title)
+
+        self.frame = QFrame(self.home)
+        self.frame.setObjectName(u"frame")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_6 = QVBoxLayout(self.frame)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalSpacer_3 = QSpacerItem(20, 521, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_6.addItem(self.verticalSpacer_3)
+
 
         self.verticalLayout.addWidget(self.frame)
-
-        self.label = QLabel(self.home)
-        self.label.setObjectName(u"label")
-        self.label.setMaximumSize(QSize(16777215, 16777215))
-        self.label.setStyleSheet(u"color: rgb(255, 255, 255);\n"
-"font: 12pt \"Segoe UI\";")
-        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        self.label.setMargin(32)
-
-        self.verticalLayout.addWidget(self.label)
 
         pages.addWidget(self.home)
         self.settings = QWidget()
@@ -56,35 +54,77 @@ class Ui_pages(object):
         self.verticalLayout_2 = QVBoxLayout(self.settings)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setContentsMargins(48, 48, 0, 0)
+        self.settings_title = QLabel(self.settings)
+        self.settings_title.setObjectName(u"settings_title")
+        sizePolicy.setHeightForWidth(self.settings_title.sizePolicy().hasHeightForWidth())
+        self.settings_title.setSizePolicy(sizePolicy)
+
+        self.verticalLayout_2.addWidget(self.settings_title)
+
         self.frame_2 = QFrame(self.settings)
         self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setMaximumSize(QSize(16777215, 20))
-        self.frame_2.setStyleSheet(u"background-color: rgb(27, 27, 27);")
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_5 = QVBoxLayout(self.frame_2)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_5.addItem(self.verticalSpacer_2)
+
 
         self.verticalLayout_2.addWidget(self.frame_2)
 
-        self.label_2 = QLabel(self.settings)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMaximumSize(QSize(16777215, 16777215))
-        self.label_2.setStyleSheet(u"color: rgb(255, 255, 255);\n"
-"font: 12pt \"Segoe UI\";")
-        self.label_2.setMargin(32)
-
-        self.verticalLayout_2.addWidget(self.label_2)
-
         pages.addWidget(self.settings)
+        self.about = QWidget()
+        self.about.setObjectName(u"about")
+        self.verticalLayout_3 = QVBoxLayout(self.about)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(48, 48, 0, 0)
+        self.about_title = QLabel(self.about)
+        self.about_title.setObjectName(u"about_title")
+        sizePolicy.setHeightForWidth(self.about_title.sizePolicy().hasHeightForWidth())
+        self.about_title.setSizePolicy(sizePolicy)
+
+        self.verticalLayout_3.addWidget(self.about_title)
+
+        self.frame_3 = QFrame(self.about)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.frame_3)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.author = QLabel(self.frame_3)
+        self.author.setObjectName(u"author")
+        sizePolicy.setHeightForWidth(self.author.sizePolicy().hasHeightForWidth())
+        self.author.setSizePolicy(sizePolicy)
+        self.author.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+
+        self.verticalLayout_4.addWidget(self.author)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer)
+
+
+        self.verticalLayout_3.addWidget(self.frame_3)
+
+        pages.addWidget(self.about)
 
         self.retranslateUi(pages)
+
+        pages.setCurrentIndex(2)
+
 
         QMetaObject.connectSlotsByName(pages)
     # setupUi
 
     def retranslateUi(self, pages):
         pages.setWindowTitle(QCoreApplication.translate("pages", u"StackedWidget", None))
-        self.label.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">Home</span></p></body></html>", None))
-        self.label_2.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">Settings</span></p></body></html>", None))
+        self.home_title.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">Home</span></p></body></html>", None))
+        self.settings_title.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">Settings</span></p></body></html>", None))
+        self.about_title.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">About</span></p></body></html>", None))
+        self.author.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:12pt;\">Created by Amenduim</span></p></body></html>", None))
     # retranslateUi
 

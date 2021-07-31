@@ -1,6 +1,10 @@
 {
     "background": "#383838",
     "topbar": "#262626",
+    "topbar_line": "#1b1b1b",
     "menu_background": "#edb012",
-    "topbar_line": "#1b1b1b"
+    "menu_button_hover": "#f1bf41",
+    "menu_button_pressed": "#F4CC67",
+    "text": "#000000",
+    "page_title": "#ffffff"
 }

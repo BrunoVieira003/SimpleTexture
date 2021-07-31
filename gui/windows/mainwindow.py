@@ -1,7 +1,8 @@
-from PySide6.QtCore import QEasingCurve, QPropertyAnimation
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout
 from gui.pages.ui_pages import Ui_pages
+from gui.widgets.menu_button import MenuButton
 
 import json
 
@@ -33,14 +34,25 @@ class UI_MainWindow:
         self.menu_layout.setSpacing(0)
         self.menu_layout.setContentsMargins(0,0,0,0)
 
-        self.toggle_button = QPushButton(text="Menu")
-        self.toggle_button.setFlat(True)
-        self.toggle_button.setMinimumHeight(70)
+        
+        self.toggle_button = MenuButton("Menu", 70, "menu_icon.svg", 50, self.toggle_menu) # Menu button
+        self.home_button = MenuButton("Home", 70, "home_icon.svg", 50, lambda: self.change_page(0)) # Home button
+        self.settings_button = MenuButton("Settings", 70, "settings_icon.svg", 50, lambda: self.change_page(1)) # Settings button
+        self.about_button = MenuButton("About", 70, "info_icon.svg", 50, lambda: self.change_page(2)) # About button
+
+        for button, icon in zip([self.home_button, self.settings_button, self.about_button], ["home", "settings", "info"]):
+            button.setFlat(True)
+            button.setMinimumHeight(70)
+            button.setIcon(QIcon(f"gui\\images\\icons\\{icon}_icon.svg"))
+            button.setIconSize(QSize(50, 50))
 
         self.menu_spacing = QSpacerItem(0, 70, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.menu_layout.addWidget(self.toggle_button)
+        self.menu_layout.addWidget(self.home_button)
+        self.menu_layout.addWidget(self.settings_button)
         self.menu_layout.addItem(self.menu_spacing)
+        self.menu_layout.addWidget(self.about_button)
 
         # content
         self.content = QFrame()
@@ -71,31 +83,40 @@ class UI_MainWindow:
         
         parent.setCentralWidget(self.central_frame)
 
-        # Bind buttons
-        self.toggle_button.clicked.connect(self.toggle_menu)
-
         # Add theme
         self.set_theme(theme)
     
     def toggle_menu(self):
-        button_width = self.menu.width()
-        if button_width == 70:
+        menu_width = self.menu.width()
+        if menu_width == 70:
             width = 240
         else:
             width = 70
         self.animation = QPropertyAnimation(self.menu, b"minimumWidth")
-        self.animation.setStartValue(button_width)
+        self.animation.setStartValue(menu_width)
         self.animation.setEndValue(width)
         self.animation.setEasingCurve(QEasingCurve.InOutCirc)
         self.animation.setDuration(250)
         self.animation.start()
     
+    def change_page(self, page_index):
+        self.pages.setCurrentIndex(page_index)
+    
     def set_theme(self, theme):
         with open(f"gui\\themes\\{theme}.json", "r") as arq:
             self.theme = json.load(arq)
+        
+        # Basic layout
         self.central_frame.setStyleSheet(f"background-color: {self.theme['background']}")
         self.content.setStyleSheet(f"background-color: {self.theme['background']}")
-        self.menu.setStyleSheet(f"background-color: {self.theme['menu_background']}")
-        self.toggle_button.setStyleSheet("border: none; background-color: #ffffff")
         self.topbar.setStyleSheet(f"background-color: {self.theme['topbar']}")
         self.topbar_line.setStyleSheet(f"background-color: {self.theme['topbar_line']}")
+
+        # Left menu
+        self.menu.setStyleSheet(f"background-color: {self.theme['menu_background']}")
+        for button in [self.toggle_button, self.home_button, self.settings_button, self.about_button]:
+            button.set_style_sheet(text_color=self.theme['text'], bg_hover=self.theme['menu_button_hover'], bg_pressed=self.theme['menu_button_pressed'])
+        # Pages
+        self.ui_pages.home.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.ui_pages.settings.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.ui_pages.about.setStyleSheet(f"color: {self.theme['page_title']}")
