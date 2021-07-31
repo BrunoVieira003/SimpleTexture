@@ -91,6 +91,8 @@ class UI_MainWindow:
             self.ui_pages.themes.addItem(_theme.title())
             fun = lambda: self.set_theme(self.ui_pages.themes.currentText().lower())
             self.ui_pages.themes.currentIndexChanged.connect(fun)
+        index = self.ui_pages.themes.findText(theme.title())
+        self.ui_pages.themes.setCurrentIndex(index)
 
         # Add theme
         self.set_theme(theme)
