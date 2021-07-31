@@ -14,7 +14,7 @@
    <string>StackedWidget</string>
   </property>
   <property name="currentIndex">
-   <number>2</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="home">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -116,9 +116,130 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
+        <widget class="QGroupBox" name="appearance">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox{
+border: none;
+}</string>
+         </property>
+         <property name="title">
+          <string>Appearance</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+          </property>
+          <property name="rowWrapPolicy">
+           <enum>QFormLayout::WrapLongRows</enum>
+          </property>
+          <property name="formAlignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>20</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>20</number>
+          </property>
+          <property name="leftMargin">
+           <number>40</number>
+          </property>
+          <property name="topMargin">
+           <number>30</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Theme:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="themes">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="currentText">
+             <string/>
+            </property>
+            <property name="insertPolicy">
+             <enum>QComboBox::NoInsert</enum>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string notr="true"/>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>

@@ -1,9 +1,10 @@
 from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QFont, QIcon
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout
 from gui.pages.ui_pages import Ui_pages
 from gui.widgets.menu_button import MenuButton
 
+import os
 import json
 
 
@@ -77,11 +78,19 @@ class UI_MainWindow:
         self.content_layout.addWidget(self.pages)
         self.pages.setCurrentWidget(self.ui_pages.home)
 
+
         # Add widgets to main layout
         self.main_layout.addWidget(self.menu)
         self.main_layout.addWidget(self.content)
         
         parent.setCentralWidget(self.central_frame)
+        
+        #Themes Combobox
+        for _theme in os.listdir("gui\\themes"):
+            _theme = _theme[:-5]
+            self.ui_pages.themes.addItem(_theme.title())
+            fun = lambda: self.set_theme(self.ui_pages.themes.currentText().lower())
+            self.ui_pages.themes.currentIndexChanged.connect(fun)
 
         # Add theme
         self.set_theme(theme)
@@ -116,6 +125,7 @@ class UI_MainWindow:
         self.menu.setStyleSheet(f"background-color: {self.theme['menu_background']}")
         for button in [self.toggle_button, self.home_button, self.settings_button, self.about_button]:
             button.set_style_sheet(text_color=self.theme['menu_text'], bg_hover=self.theme['menu_button_hover'], bg_pressed=self.theme['menu_button_pressed'])
+
         # Pages
         self.ui_pages.home_title.setStyleSheet(f"color: {self.theme['page_title']}")
         self.ui_pages.home.setStyleSheet(f"color: {self.theme['text']}")
@@ -123,3 +133,13 @@ class UI_MainWindow:
         self.ui_pages.settings.setStyleSheet(f"color: {self.theme['text']}")
         self.ui_pages.about_title.setStyleSheet(f"color: {self.theme['page_title']}")
         self.ui_pages.about.setStyleSheet(f"color: {self.theme['text']}")
+
+        # theme Combobox
+        style = f"""
+        QComboBox{{
+            background-color: {self.theme['topbar']};
+        selection-background-color: {self.theme['topbar']};
+        border: none;
+        }}
+        """
+        self.ui_pages.themes.setStyleSheet(style)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'pagesiOoppM.ui'
+## Form generated from reading UI file 'pagesrbXnlX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.2
 ##
@@ -68,6 +68,55 @@ class Ui_pages(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.frame_2)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.appearance = QGroupBox(self.frame_2)
+        self.appearance.setObjectName(u"appearance")
+        sizePolicy.setHeightForWidth(self.appearance.sizePolicy().hasHeightForWidth())
+        self.appearance.setSizePolicy(sizePolicy)
+        self.appearance.setMinimumSize(QSize(0, 0))
+        font = QFont()
+        font.setPointSize(14)
+        self.appearance.setFont(font)
+        self.appearance.setStyleSheet(u"QGroupBox{\n"
+"border: none;\n"
+"}")
+        self.appearance.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.appearance.setFlat(True)
+        self.formLayout = QFormLayout(self.appearance)
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setFieldGrowthPolicy(QFormLayout.FieldsStayAtSizeHint)
+        self.formLayout.setRowWrapPolicy(QFormLayout.WrapLongRows)
+        self.formLayout.setFormAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.formLayout.setHorizontalSpacing(20)
+        self.formLayout.setVerticalSpacing(20)
+        self.formLayout.setContentsMargins(40, 30, 0, 0)
+        self.label = QLabel(self.appearance)
+        self.label.setObjectName(u"label")
+        font1 = QFont()
+        font1.setPointSize(9)
+        self.label.setFont(font1)
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label)
+
+        self.themes = QComboBox(self.appearance)
+        self.themes.setObjectName(u"themes")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.themes.sizePolicy().hasHeightForWidth())
+        self.themes.setSizePolicy(sizePolicy1)
+        self.themes.setMinimumSize(QSize(120, 0))
+        self.themes.setFont(font1)
+        self.themes.setStyleSheet(u"")
+        self.themes.setInsertPolicy(QComboBox.NoInsert)
+        self.themes.setIconSize(QSize(16, 16))
+        self.themes.setPlaceholderText(u"")
+        self.themes.setFrame(True)
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.themes)
+
+
+        self.verticalLayout_5.addWidget(self.appearance)
+
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_5.addItem(self.verticalSpacer_2)
@@ -114,7 +163,7 @@ class Ui_pages(object):
 
         self.retranslateUi(pages)
 
-        pages.setCurrentIndex(2)
+        pages.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(pages)
@@ -124,6 +173,9 @@ class Ui_pages(object):
         pages.setWindowTitle(QCoreApplication.translate("pages", u"StackedWidget", None))
         self.home_title.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">Home</span></p></body></html>", None))
         self.settings_title.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">Settings</span></p></body></html>", None))
+        self.appearance.setTitle(QCoreApplication.translate("pages", u"Appearance", None))
+        self.label.setText(QCoreApplication.translate("pages", u"Theme:", None))
+        self.themes.setCurrentText("")
         self.about_title.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">About</span></p></body></html>", None))
         self.author.setText(QCoreApplication.translate("pages", u"<html><head/><body><p><span style=\" font-size:12pt;\">Created by Amenduim</span></p></body></html>", None))
     # retranslateUi
