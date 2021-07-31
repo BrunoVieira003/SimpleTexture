@@ -4,6 +4,7 @@
     "topbar_line": "#1b1b1b",
     "menu_background": "#edb012",
     "menu_text": "#000",
+    "menu_icon_color": "#000",
     "menu_button_hover": "#f1bf41",
     "menu_button_pressed": "#F4CC67",
     "text": "#fff",

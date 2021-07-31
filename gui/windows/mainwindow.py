@@ -124,7 +124,8 @@ class UI_MainWindow:
         # Left menu
         self.menu.setStyleSheet(f"background-color: {self.theme['menu_background']}")
         for button in [self.toggle_button, self.home_button, self.settings_button, self.about_button]:
-            button.set_style_sheet(text_color=self.theme['menu_text'], bg_hover=self.theme['menu_button_hover'], bg_pressed=self.theme['menu_button_pressed'])
+            button.set_style_sheet(bg_hover=self.theme['menu_button_hover'], bg_pressed=self.theme['menu_button_pressed'])
+            button.set_style_sheet(text_color=self.theme['menu_text'], icon_color=self.theme['menu_icon_color'])
 
         # Pages
         self.ui_pages.home_title.setStyleSheet(f"color: {self.theme['page_title']}")
