@@ -89,7 +89,7 @@ class UI_MainWindow:
     def toggle_menu(self):
         menu_width = self.menu.width()
         if menu_width == 70:
-            width = 240
+            width = 150
         else:
             width = 70
         self.animation = QPropertyAnimation(self.menu, b"minimumWidth")
@@ -115,8 +115,11 @@ class UI_MainWindow:
         # Left menu
         self.menu.setStyleSheet(f"background-color: {self.theme['menu_background']}")
         for button in [self.toggle_button, self.home_button, self.settings_button, self.about_button]:
-            button.set_style_sheet(text_color=self.theme['text'], bg_hover=self.theme['menu_button_hover'], bg_pressed=self.theme['menu_button_pressed'])
+            button.set_style_sheet(text_color=self.theme['menu_text'], bg_hover=self.theme['menu_button_hover'], bg_pressed=self.theme['menu_button_pressed'])
         # Pages
-        self.ui_pages.home.setStyleSheet(f"color: {self.theme['page_title']}")
-        self.ui_pages.settings.setStyleSheet(f"color: {self.theme['page_title']}")
-        self.ui_pages.about.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.ui_pages.home_title.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.ui_pages.home.setStyleSheet(f"color: {self.theme['text']}")
+        self.ui_pages.settings_title.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.ui_pages.settings.setStyleSheet(f"color: {self.theme['text']}")
+        self.ui_pages.about_title.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.ui_pages.about.setStyleSheet(f"color: {self.theme['text']}")
