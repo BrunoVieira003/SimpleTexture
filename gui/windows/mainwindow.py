@@ -1,7 +1,13 @@
 from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize
 from PySide6.QtGui import QFont, QIcon
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout
-from gui.pages.ui_pages import Ui_pages
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout, QWidget
+
+# pages
+from gui.pages.home_page import Ui_HomePage
+from gui.pages.settings_page import Ui_SettingsPage
+from gui.pages.about_page import Ui_AboutPage
+
+# custom widgets
 from gui.widgets.menu_button import MenuButton
 
 import os
@@ -73,10 +79,21 @@ class UI_MainWindow:
 
         # Pages
         self.pages = QStackedWidget()
-        self.ui_pages = Ui_pages()
-        self.ui_pages.setupUi(self.pages)
+
+        self.home_page = QWidget()
+        self.settings_page = QWidget()
+        self.about_page = QWidget()
+
+        self.ui_home = Ui_HomePage()
+        self.ui_settings = Ui_SettingsPage()
+        self.ui_about = Ui_AboutPage()
+
+        for page, layout in zip([self.home_page, self.settings_page, self.about_page], [self.ui_home, self.ui_settings, self.ui_about]):
+            layout.setupUi(page)
+            self.pages.addWidget(page)
+
         self.content_layout.addWidget(self.pages)
-        self.pages.setCurrentWidget(self.ui_pages.home)
+        self.pages.setCurrentWidget(self.home_page)
 
 
         # Add widgets to main layout
@@ -88,11 +105,11 @@ class UI_MainWindow:
         #Themes Combobox
         for _theme in os.listdir("gui\\themes"):
             _theme = _theme[:-5]
-            self.ui_pages.themes.addItem(_theme.title())
-            fun = lambda: self.set_theme(self.ui_pages.themes.currentText().lower())
-            self.ui_pages.themes.currentIndexChanged.connect(fun)
-        index = self.ui_pages.themes.findText(theme.title())
-        self.ui_pages.themes.setCurrentIndex(index)
+            self.ui_settings.themes.addItem(_theme.title())
+            fun = lambda: self.set_theme(self.ui_settings.themes.currentText().lower())
+            self.ui_settings.themes.currentIndexChanged.connect(fun)
+        index = self.ui_settings.themes.findText(theme.title())
+        self.ui_settings.themes.setCurrentIndex(index)
 
         # Add theme
         self.set_theme(theme)
@@ -130,19 +147,20 @@ class UI_MainWindow:
             button.set_style_sheet(text_color=self.theme['menu_text'], icon_color=self.theme['menu_icon_color'])
 
         # Pages
-        self.ui_pages.home_title.setStyleSheet(f"color: {self.theme['page_title']}")
-        self.ui_pages.home.setStyleSheet(f"color: {self.theme['text']}")
-        self.ui_pages.settings_title.setStyleSheet(f"color: {self.theme['page_title']}")
-        self.ui_pages.settings.setStyleSheet(f"color: {self.theme['text']}")
-        self.ui_pages.about_title.setStyleSheet(f"color: {self.theme['page_title']}")
-        self.ui_pages.about.setStyleSheet(f"color: {self.theme['text']}")
+        self.ui_home.title.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.home_page.setStyleSheet(f"color: {self.theme['text']}")
+
+        self.ui_settings.title.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.settings_page.setStyleSheet(f"color: {self.theme['text']}")
+
+        self.ui_about.title.setStyleSheet(f"color: {self.theme['page_title']}")
+        self.about_page.setStyleSheet(f"color: {self.theme['text']}")
 
         # theme Combobox
         style = f"""
         QComboBox{{
             background-color: {self.theme['topbar']};
-        selection-background-color: {self.theme['topbar']};
-        border: none;
+            border: none;
         }}
         """
-        self.ui_pages.themes.setStyleSheet(style)
+        self.ui_settings.themes.setStyleSheet(style)
