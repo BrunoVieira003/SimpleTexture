@@ -15,7 +15,7 @@ import json
 
 
 class UI_MainWindow:
-    def setup_ui(self, parent, theme="default"):
+    def setup_ui(self, parent):
         if not parent.objectName():
             parent.setObjectName("MainWindow")
         
@@ -101,18 +101,6 @@ class UI_MainWindow:
         self.main_layout.addWidget(self.content)
         
         parent.setCentralWidget(self.central_frame)
-        
-        #Themes Combobox
-        for _theme in os.listdir("gui\\themes"):
-            _theme = _theme[:-5]
-            self.ui_settings.themes.addItem(_theme.title())
-            fun = lambda: self.set_theme(self.ui_settings.themes.currentText().lower())
-            self.ui_settings.themes.currentIndexChanged.connect(fun)
-        index = self.ui_settings.themes.findText(theme.title())
-        self.ui_settings.themes.setCurrentIndex(index)
-
-        # Add theme
-        self.set_theme(theme)
     
     def toggle_menu(self):
         menu_width = self.menu.width()
@@ -130,9 +118,8 @@ class UI_MainWindow:
     def change_page(self, page_index):
         self.pages.setCurrentIndex(page_index)
     
-    def set_theme(self, theme):
-        with open(f"gui\\themes\\{theme}.json", "r") as arq:
-            self.theme = json.load(arq)
+    def set_theme(self, theme, theme_name):
+        self.theme = theme
         
         # Basic layout
         self.central_frame.setStyleSheet(f"background-color: {self.theme['background']}")
@@ -164,3 +151,6 @@ class UI_MainWindow:
         }}
         """
         self.ui_settings.themes.setStyleSheet(style)
+    
+    def add_theme(self, theme):
+        self.ui_settings.themes.addItem(theme.title())
