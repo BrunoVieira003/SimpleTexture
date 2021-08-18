@@ -1,11 +1,14 @@
+from typing import Optional
+import PySide6
 from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize
 from PySide6.QtGui import QFont, QIcon
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QMainWindow, QPushButton, QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout, QWidget
 
 # pages
-from gui.pages.home_page import Ui_HomePage
-from gui.pages.settings_page import Ui_SettingsPage
-from gui.pages.about_page import Ui_AboutPage
+# from gui.pages.home_page import Ui_HomePage
+# from gui.pages.settings_page import Ui_SettingsPage
+# from gui.pages.about_page import Ui_AboutPage
+import gui
 
 # custom widgets
 from gui.widgets.menu_button import MenuButton
@@ -13,23 +16,24 @@ from gui.widgets.menu_button import MenuButton
 import os
 
 
-class UI_MainWindow:
-    def setup_ui(self, parent):
-        if not parent.objectName():
-            parent.setObjectName("MainWindow")
+class MenuWindow(QMainWindow):
+    def __init__(self) -> None:
+        super().__init__()
+        if not self.objectName():
+            self.setObjectName("MainWindow")
         
         # Set size of window
-        parent.resize(1200, 720)
-        parent.setMinimumSize(960, 540)
-        parent.setWindowTitle("Simple Texture")
+        self.resize(1200, 720)
+        self.setMinimumSize(960, 540)
+        self.setWindowTitle("Simple Texture")
 
         # Set central frame
         self.central_frame = QFrame()
 
         # Set main layout
-        self.main_layout = QHBoxLayout(self.central_frame)
-        self.main_layout.setSpacing(0)
-        self.main_layout.setContentsMargins(0,0,0,0)
+        self.central_layout = QHBoxLayout(self.central_frame)
+        self.central_layout.setSpacing(0)
+        self.central_layout.setContentsMargins(0,0,0,0)
 
         # left menu
         self.menu = QFrame()
@@ -49,7 +53,7 @@ class UI_MainWindow:
         for button, icon in zip([self.home_button, self.settings_button, self.about_button], ["home", "settings", "info"]):
             button.setFlat(True)
             button.setMinimumHeight(70)
-            button.setIcon(QIcon(f"gui\\images\\icons\\{icon}_icon.svg"))
+            button.setIcon(QIcon(f"assets\\images\\icons\\{icon}_icon.svg"))
             button.setIconSize(QSize(50, 50))
 
         self.menu_spacing = QSpacerItem(0, 70, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -83,9 +87,9 @@ class UI_MainWindow:
         self.settings_page = QWidget()
         self.about_page = QWidget()
 
-        self.ui_home = Ui_HomePage()
-        self.ui_settings = Ui_SettingsPage()
-        self.ui_about = Ui_AboutPage()
+        self.ui_home = gui.pages.Ui_HomePage()
+        self.ui_settings = gui.pages.Ui_SettingsPage()
+        self.ui_about = gui.pages.Ui_AboutPage()
 
         for page, layout in zip([self.home_page, self.settings_page, self.about_page], [self.ui_home, self.ui_settings, self.ui_about]):
             layout.setupUi(page)
@@ -96,10 +100,10 @@ class UI_MainWindow:
 
 
         # Add widgets to main layout
-        self.main_layout.addWidget(self.menu)
-        self.main_layout.addWidget(self.content)
+        self.central_layout.addWidget(self.menu)
+        self.central_layout.addWidget(self.content)
         
-        parent.setCentralWidget(self.central_frame)
+        self.setCentralWidget(self.central_frame)
     
     def toggle_menu(self):
         menu_width = self.menu.width()

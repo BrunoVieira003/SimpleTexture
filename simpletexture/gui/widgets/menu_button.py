@@ -11,7 +11,7 @@ class MenuButton(QPushButton):
         self.setFont(QFont("Segoe", 12, 10))
 
         # Set icon
-        self.icon_path = f"gui\\images\\icons\\{icon}"
+        self.icon_path = f"assets\\images\\icons\\{icon}"
         self.icon_color = icon_color
         self.pixmap_icon = QPixmap(self.icon_path)
         self.icon_size = QSize(icon_size, icon_size)
